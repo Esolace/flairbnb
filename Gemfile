@@ -17,9 +17,13 @@ gem 'uglifier', '>= 1.3.0'
 
 #bootstrap
 gem 'bootstrap'
+
 gem 'jquery-rails'
 gem 'devise'
+
 gem 'paperclip'
+
+gem 'toastr-rails'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

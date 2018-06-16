@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_16_033739) do
+ActiveRecord::Schema.define(version: 2018_06_16_093207) do
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "home_type"
+    t.string "room_type"
+    t.integer "accomodate"
+    t.integer "bed_room"
+    t.integer "bathroom"
+    t.string "listing_name"
+    t.text "summary"
+    t.string "address"
+    t.boolean "has_wifi"
+    t.boolean "has_tv"
+    t.boolean "has_closet"
+    t.boolean "has_shampoo"
+    t.boolean "has_breakfast"
+    t.boolean "has_heating"
+    t.boolean "has_aircon"
+    t.integer "price"
+    t.boolean "active"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
