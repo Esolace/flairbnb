@@ -10,15 +10,19 @@ body {
     
 .container {
     width: 80%;
+    
+}
+.row {
+    margin-top: 40px;
 }
 
-.navbar-default {
+.navbar {
     background-color: #FFFFFF;
 }
 
 
 
-.navbar-default .navbar-brand {
+.navbar .navbar-brand {
     color: #FF5A5F;
     font-size: 2em;
     font-weight: 400;
@@ -50,7 +54,7 @@ body {
 }
 
     
-.btn-default.btn {
+.btn-light.btn {
     width: 100%;
     border-radius: 2px;
     padding: 10px 0;
@@ -59,11 +63,12 @@ body {
 
     
 .panel-default .panel-heading {
-    padding: 5px;
+    padding: 8px;
     color: #565a5c;
     background-color: #edefed;
     font-size: 18px;
-    font-weight: 400
+    font-weight: 400;
+    margin-bottom: 5px;
 }
 
 .panel-body {
