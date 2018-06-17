@@ -1,0 +1,121 @@
+<div class="row">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Become a host
+    </div>
+    <div class="panel-body">
+        <div class="container">
+            <%= form_for @room do |f| %>
+                
+                <div class="row">
+                    <div class="col-md-4 select">
+                        <div class="form-group">
+                            <label>Home Type</label>
+                            <%= f.select :home_type, [["House", "House"], ["Apartment", "Apartment"], ["Bed & Breakfast", "Bed & Breakfast"]], id: "home_type", prompt:"select one...", class:"form-control" %>
+                        </div>
+                    </div>
+                     <div class="col-md-4 select">
+                        <div class="form-group">
+                            <label>Number of People</label>
+                            <%= f.select :room_type, [["Entire Home", "Entire Home"], ["Shared Home", "Shared Home"]], prompt:"select one...", class:"form-control" %>
+                        </div>
+                    </div>
+                     <div class="col-md-4 select">
+                        <div class="form-group">
+                            <label>Accomodates</label>
+                            <%= f.select :accomodate, [["1 person", 1], ["2 persons", 2], ["3 persons", 3], ["4 persons", 4], ["5 persons", 5], ["6 persons", 6]], prompt:"select one...", class:"form-control" %>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4 select">
+                        <div class="form-group">
+                            <label>Bedrooms</label>
+                            <%= f.select :bed_room, [["1", 1], ["2", 2], ["3", 4], ["4", 4]], prompt:"select one...", class:"form-control" %>
+                        </div>
+                    </div>
+                     <div class="col-md-4 select">
+                        <div class="form-group">
+                            <label>Bathrooms</label>
+                            <%= f.select :bathroom, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6]], prompt:"select one...", class:"form-control" %>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <label>Name your place</label>
+                        <%= f.text_field :listing_name, placeholder:"name of listing", class:"form-control" %>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <label>Description</label>
+                        <%= f.text_area :summary, placeholder:"describe the decor, ambiance & general appeal", class:"form-control" %>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <label>Address</label>
+                        <%= f.text_field :address, placeholder:"general location", class:"form-control" %>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <%= f.check_box :has_wifi %> Wifi
+                        </div>
+                         <div class="form-group">
+                            <%= f.check_box :has_tv %> Television
+                        </div>
+                         <div class="form-group">
+                            <%= f.check_box :has_closet %> Closet
+                        </div>
+                         <div class="form-group">
+                            <%= f.check_box :has_shampoo %> Shampoo
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <%= f.check_box :has_kitchen %> Kitchen
+                        </div>
+                         <div class="form-group">
+                            <%= f.check_box :has_breakfast %> Breakfast
+                        </div>
+                         <div class="form-group">
+                            <%= f.check_box :has_heating %> Heating available
+                        </div>
+                         <div class="form-group">
+                            <%= f.check_box :has_aircon %> Aircon available
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Price Per night</label>
+                            <div class="input-group">
+                                <%= f.text_field :price, placeholder:"e.g. $35", class: "form-control" %>
+                            </div><div class="input-group-addon">$</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <%= f.check_box :active %> Listing Active
+                    </div>                
+                </div>
+                
+                <div class="actions">
+                    <%= f.submit "Validate my listing", class:"btn btn-primary" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div></div>
