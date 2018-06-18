@@ -7,6 +7,8 @@
         <div class="container">
             <%= form_for @room do |f| %>
                 
+                <%= render partial: 'shared/errors' %>
+
                 <div class="row">
                     <div class="col-md-4 select">
                         <div class="form-group">
