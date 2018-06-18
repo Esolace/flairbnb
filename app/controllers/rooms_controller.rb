@@ -2,6 +2,7 @@ class RoomsController < ApplicationController
   
   before_action :set_room, only: [:show, :edit, :update]
   before_action :authenticate_user!, except: [:show]
+  before_action :require_same_user, only: [:edit, :update]
 
   def index
     @rooms = current_user.rooms
@@ -14,7 +15,13 @@ class RoomsController < ApplicationController
   def create
     @room = current_user.rooms.build(room_params)
     if @room.save
-      redirect_to @room, notice:"Your listing has been created successfully!"
+      if params[:images]
+        params[:images].each do |i|
+          @room.photos.create(image: i)
+        end
+      end
+      @photos = @room.photos
+      redirect_to edit_room_path(@room), notice:"Your listing has been created successfully!"
     else
 
       render :new
@@ -22,16 +29,22 @@ class RoomsController < ApplicationController
   end
 
   def show
-
+    @photos = @room.photos
   end
 
   def edit
-
+    @photos = @room.photos
   end
 
   def update
     if @room.update(room_params)
-      redirect_to @room, notice:"your updated has been made successfully!"
+      if params[:images]
+        params[:images].each do |i|
+          @room.photos.create(image: i)
+        end
+      end
+      @photos = @room.photos
+      redirect_to edit_room_path(@room), notice:"your updated has been made successfully!"
     else
       render :edit
     end
@@ -47,5 +60,10 @@ class RoomsController < ApplicationController
     params.require(:room).permit(:home_type, :room_type, :accomodate, :bed_room, :bathroom, :listing_name, :summary, :address, :has_wifi, :has_closet, :has_shampoo, :has_breakfast, :has_heating, :has_aircon, :has_kitchen, :price, :active)
   end
 
-
+  def require_same_user
+    if current_user.id != @room.user_id
+      flash[:danger] = "you are not authorized to modify this page!"
+      redirect_to root_path
+    end
+  end
 end
