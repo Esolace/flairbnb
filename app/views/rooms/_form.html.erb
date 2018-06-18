@@ -44,23 +44,23 @@
                 </div>
                 
                 <div class="row">
-                    <div class="form-group">
+                    <div class="form-group col-lg-12">
                         <label>Name your place</label>
-                        <%= f.text_field :listing_name, placeholder:"name of listing", class:"form-control" %>
+                        <%= f.text_field :listing_name, placeholder:"name of listing", class:"form-control  form-control-lg" %>
                     </div>
                 </div>
                 
                 <div class="row">
-                    <div class="form-group">
+                    <div class="form-group col-lg-12">
                         <label>Description</label>
-                        <%= f.text_area :summary, placeholder:"describe the decor, ambiance & general appeal", class:"form-control" %>
+                        <%= f.text_area :summary, placeholder:"describe the decor, ambiance & general appeal", class:"form-control  form-control-lg" %>
                     </div>
                 </div>
                 
                 <div class="row">
-                    <div class="form-group">
+                    <div class="form-group col-lg-12">
                         <label>Address</label>
-                        <%= f.text_field :address, placeholder:"general location", class:"form-control" %>
+                        <%= f.text_field :address, placeholder:"general location", class:"form-control  form-control-lg" %>
                     </div>
                 </div>
                 
@@ -101,7 +101,10 @@
                             <label>Price Per night</label>
                             <div class="input-group">
                                 <%= f.text_field :price, placeholder:"e.g. $35", class: "form-control" %>
-                            </div><div class="input-group-addon">$</div>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -115,6 +118,7 @@
                 <div class="actions">
                     <%= f.submit "Validate my listing", class:"btn btn-primary" %>
                 </div>
+                
             <% end %>
         </div>
     </div>

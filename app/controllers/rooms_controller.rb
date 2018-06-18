@@ -16,6 +16,7 @@ class RoomsController < ApplicationController
     if @room.save
       redirect_to @room, notice:"Your listing has been created successfully!"
     else
+      flash[:error] = @room.errors.full_messages.join(", ")
       render :new
     end
   end
