@@ -1,0 +1,100 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+    
+        <%# Main photo of the listing %>
+        <div class="row">
+            <div class="col-md-12">
+                <%= image_tag @photos[0].image.url(), class:"img-fluid" if @photos.length > 0 %>
+            </div>
+        </div>
+
+        <br>
+
+        <%# Main info %>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <%= image_tag avatar_url(@room.user), class: "rounded-circle avatar-large" %>
+                        <br>
+                        <br>
+                        <%= @room.user.fullname %>
+                    </div>
+                    <div class="col-md-9">
+                        <h4> <%= @room.listing_name %> </h4>
+                        <%= @room.address %>
+                        <div class="row text-center row-space-1">
+                            <div class="col-sm-3">
+                                <i class="fa fa-home fa-2x"></i>
+                            </div>
+                            <div class="col-sm-3">
+                                <i class="fa fa-users fa-2x"></i>
+                            </div>
+                            <div class="col-sm-3">
+                                <i class="fa fa-bed fa-2x"></i>
+                            </div>
+                            <div class="col-sm-3">
+                                <i class="fa fa-bath fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-sm-3">
+                                <%= @room.home_type %>
+                            </div>
+                            <div class="col-sm-3">
+                                <%= @room.accomodate %> <%= @room.accomodate > 1? "visitors":"visitor" %>
+                            </div>
+                            <div class="col-sm-3">
+                                <%= @room.bed_room %> <%= @room.bed_room > 1? "beds":"bed" %>
+                            </div>
+                            <div class="col-sm-3">
+                                <%= @room.bathroom %> <%= @room.bathroom > 1? "bathrooms":"bathroom" %>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            <div class="col-md-4">
+                <%# Reservation form %>
+            
+            </div>
+        </div>
+
+        <%# Description %>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>About this home</h2>
+                <p> <%= @room.summary %> </p>
+            </div>
+        </div>
+
+        <%# Amenities %>
+        <div class="row">
+            <div class="col-md-2">
+                <p>Amenities</p>
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="amenities">
+                            <li class="<%=  'text-line-through' if !@room.has_wifi %>">Wifi</li>
+                            <li class="<%=  'text-line-through' if !@room.has_tv %>">Television</li>
+                            <li class="<%=  'text-line-through' if !@room.has_closet %>">Closet</li>
+                            <li class="<%=  'text-line-through' if !@room.has_shampoo %>">Shampoo</li>
+                        </ul>
+                    </div>
+                      <div class="col-md-6">
+                        <ul class="amenities">
+                            <li class="<%=  'text-line-through' if !@room.has_kitchen %>">Kitchen</li>
+                            <li class="<%=  'text-line-through' if !@room.has_breakfast %>">Breakfast</li>
+                            <li class="<%=  'text-line-through' if !@room.has_heating %>">Heater</li>
+                            <li class="<%=  'text-line-through' if !@room.has_aircon %>">Aircon</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
