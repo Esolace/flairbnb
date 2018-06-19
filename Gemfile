@@ -20,12 +20,15 @@ gem 'bootstrap'
 
 gem 'jquery-rails'
 gem 'devise'
+gem 'figaro'
 
 gem 'paperclip'
 
 gem 'toastr-rails'
 
 gem 'font-awesome-rails'
+
+gem 'paperclip-cloudinary'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
