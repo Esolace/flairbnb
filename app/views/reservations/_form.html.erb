@@ -7,3 +7,15 @@
 
     <%= f.submit "Request a reservation", class: "btn btn-primary" %>
 <% end %>
+
+<script>
+    $(function(){
+        $('#reservation_start_date').datepicker({
+            dateFormat: 'mm-dd-yy'
+        });
+
+        $('#reservation_end_date').datepicker({
+            dateFormat: 'mm-dd-yy'
+        });
+    });
+</script>
