@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'reservations/create'
   get 'photos/destroy'
   get 'rooms/index'
   get 'users/show'
