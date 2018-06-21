@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-3">
+        <ul class=sidebar-list>
+            <li class="sidebar-item"> <%= link_to "My listings", rooms_path, class:"sidebar-link" %> </li>
+            <li class="sidebar-item"> <%= link_to "My reservations", rooms_path, class:"sidebar-link" %> </li>
+            <li class="sidebar-item"> <%= link_to "My trips", your_trips_path, class:"sidebar-link active" %> </li>
+        </ul>
+    </div>
+    <div class="col-md-9">
+        <div class="panel panel-default">
+            <div class="panel-heading">My trips</div>
+            <div class="panel-body">
+                <% @trips.order("id DESC").each do |trip| %>
+                <div class="row">
+                    <div class="col-md-2"> 
+                        From <%= trip.start_date.strftime('%m.%d.%y') %> to <%= trip.end_date.strftime('%m.%d.%y') %>
+                    </div>
+                    <div class="col-md-6">
+                        <%= link_to room_path(trip.room) do %>
+                            <%= image_tag trip.room.photos[0].image.url(:thumb) if trip.room.photos.length > 0 %>
+                        <% end %>
+                    </div>
+                    <div class="col-md-2">
+                        <%= link_to user_path(trip.room.user) do %>
+                            <%= image_tag avatar_url(trip.room.user), class: "rounded-circle avatar-medium" %>
+                        <% end %>
+                    </div>
+                    <div class="col-md-2 right">
+                        <h4> <%= trip.total %> $</h4>
+                    </div>
+                </div>
+                <hr>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>
