@@ -1,4 +1,27 @@
 class PagesController < ApplicationController
   def home
   end
+
+  def search
+    if params[:search].present? && params[:search].strip != ""
+      session[:flairbnb_search] = params[:search]
+    end
+
+    arrResult = Array.new
+
+    if session[:flairbnb_search] && session[:flairbnb_search] != ""
+      @rooms_address = Room.where(active: true).near(session[:flairbnb_search], 5, order:'distance') 
+    else
+      @rooms_address = Room.where(active: true).all
+    end
+
+    @search = @rooms_address.ransack(params[:q])
+    @rooms = @search.result
+
+    @arrRooms = @rooms.to_a
+
+    if (params[:start_date] && params[:end_date] && params[:start_date].empty? & !params[:end_date].empty?)
+      start_date = Date.parse(params[:start_date])
+      end_date = Date.parse(params[:end_date])
+  end
 end
