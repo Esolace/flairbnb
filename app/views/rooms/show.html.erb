@@ -136,6 +136,24 @@
             </div>
         </div>
 
+        <br>
+        <hr>
+
+        <%# Reviews %>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Comments <%= @room.average_rating %> (<%= @reviews.count %>) </h3>
+                <div class="container">
+                    <div>
+                        <%= render partial: 'reviews/form' if @booked && !@hasReview %> 
+                    </div>
+                    <div>
+                        <%= render partial: 'reviews/list' %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <%# Google maps %>
         <div class="row">
             <div class=col-md-12>
