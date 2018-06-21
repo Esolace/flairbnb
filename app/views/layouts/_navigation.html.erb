@@ -23,7 +23,9 @@
                 <%= image_tag avatar_url(current_user), class: "rounded-circle avatar-small" %> <%= current_user.fullname %>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item"<%= link_to 'My Trips', root_path %> </a>
+                <a class="dropdown-item"<%= link_to 'My listings', rooms_path %> </a>
+                <a class="dropdown-item"<%= link_to 'My reservations', your_reservations_path %> </a>
+                <a class="dropdown-item"<%= link_to 'My trips', your_trips_path %> </a>
                 <a class="dropdown-item" <%= link_to 'Edit my profile', edit_user_registration_path %></a>
 
                 
