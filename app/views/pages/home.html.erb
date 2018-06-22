@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-8">
         <div class="text-center">
-            <h2>Find unique homes and live like a local.</h2>
+            <h2>Find unique homes and live like a local</h2>
         </div>
     </div>
 </div>
@@ -54,27 +54,25 @@
 </div>
 
 <script>
-    $(function(){
+    $(function() {
         $('#start_date').datepicker({
-                    dateFormat: 'yy-mm-dd',
+                    dateFormat: 'dd-mm-yy',
                     minDate: 0,
                     maxDate: '3m',
-                    beforeShowDay: unavailable,
                     onSelect: function(selected) {
                         var newdate = new Date($("#reservation_start_date").datepicker("getDate"));
                         newdate.setDate(newdate.getDate() + 1);
-                        $('#reservation_end_date').datepicker("option", "minDate", newdate);
+                        $('#reservation_end_date').datepicker("option","minDate", newdate);
                     }
-        });
-
+        })
+        
         $('#reservation_end_date').datepicker({
-                    dateFormat: 'yy-mm-dd',
+                    dateFormat: 'dd-mm-yy',
                     minDate: 0,
                     maxDate: '3m',
-                    beforeShowDay: unavailable,
                     onSelect: function(selected) {
                         $('#reservation_start_date').datepicker("option", "maxDate", selected);
                     }
-        }); 
-    });  
+        });
+    })
 </script>

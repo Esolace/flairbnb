@@ -12,10 +12,10 @@ class PagesController < ApplicationController
     arrResult = Array.new
 
     if session[:flairbnb_search] && session[:flairbnb_search] != ""
-      @rooms_address = Room.where(active: true).near(session[:flairbnb_search], 5, order:'distance') 
-    else
+      @rooms_address = Room.where(active: true).near(session[:flairbnb_search], 5, order:'distance')
+   else
       @rooms_address = Room.where(active: true).all
-    end
+   end
 
     @search = @rooms_address.ransack(params[:q])
     @rooms = @search.result
