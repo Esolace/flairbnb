@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get '/preview' => 'reservations#preview'
   get 'my_trips' => 'reservations#your_trips', as: :your_trips
   get 'my_reservations' => 'reservations#your_reservations', as: :your_reservations
-  get '/search' => 'pages/search'
+  get '/search' => 'pages_controller#search'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
