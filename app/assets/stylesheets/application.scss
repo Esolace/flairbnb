@@ -5,6 +5,7 @@
 body {  
     margin-top: 100px;
     color: #565a5c;
+    margin-bottom: 50px
     }
     
 .errors {
@@ -31,6 +32,7 @@ body {
     color: #FF5A5F;
     font-size: 2em;
     font-weight: 400;
+    margin-left:111px !important;
 }
 
     
@@ -291,4 +293,14 @@ input[type="checkbox"]:checked:before {
     opacity: 0.8;
     display: block;
     text-align: center;
+}
+
+.home-link a,p {
+    color: #82888a;
+    text-decoration: none;
+}
+
+.home-link:hover a, .home-link:focus a {
+    color: #828881;
+    text-decoration: none;
 }

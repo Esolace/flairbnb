@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
+  
   def home
+    @rooms = Room.order("RANDOM()").limit(3)
   end
 
   def search
@@ -10,10 +12,10 @@ class PagesController < ApplicationController
     arrResult = Array.new
 
     if session[:flairbnb_search] && session[:flairbnb_search] != ""
-      @rooms_address = Room.where(active: true).near(session[:flairbnb_search], 5, order:'distance') 
-    else
+      @rooms_address = Room.where(active: true).near(session[:flairbnb_search], 5, order:'distance')
+   else
       @rooms_address = Room.where(active: true).all
-    end
+   end
 
     @search = @rooms_address.ransack(params[:q])
     @rooms = @search.result
@@ -25,7 +27,7 @@ class PagesController < ApplicationController
       end_date = Date.parse(params[:end_date])
 
       @rooms.each do |room|
-        not_available = room.reservation.where("(? <= start_date AND start_date <= ?) OR (? <= end_date AND end_date <= ?) OR (start_date < ? AND ? < end_date)", start_date, end_date, start_date, end_date, start_date, end_date)0.limit(1) 
+        not_available = room.reservations.where("(? <= start_date AND start_date <= ?) OR (? <= end_date AND end_date <= ?) OR (start_date < ? AND ? < end_date)", start_date, end_date, start_date, end_date, start_date, end_date).limit(1) 
 
         if not_available.length > 0
           @arrRooms.delete(room)
