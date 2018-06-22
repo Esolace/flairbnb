@@ -304,3 +304,41 @@ input[type="checkbox"]:checked:before {
     color: #828881;
     text-decoration: none;
 }
+#wrapper { 
+    width:960px;
+    margin:0 auto;
+}
+
+
+#sidebar {
+    float:right;
+    width:340px;
+}
+
+
+#sidebar #widget {
+    width:340px;
+    height: 600px;
+    margin-bottom:10px;
+    border-bottom:1px solid #ccc;
+}
+
+
+#article {
+    width:560px;
+}
+
+.search { position: relative; }
+.search input { 
+    text-indent: 25px;
+    width: 170px;
+    padding: 5px;
+    margin: 15px;
+    height: 40px;
+}
+.search .fa-search { 
+  position: absolute;
+  top: 12px;
+  left: 24px;
+  font-size: 15px;
+}
