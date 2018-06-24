@@ -24,6 +24,14 @@
                 <% end %>
                 </a>
             </li>
+
+            <li>
+                <a class="nav-link" <%= link_to conversations_path do %>
+                    Messages
+                <% end %>
+                </a>
+            </li>
+
             <% if (!user_signed_in?) %>
                 <a class="nav-link"<%= link_to 'Signup', new_user_registration_path %></a>
                 <a class="nav-link"<%= link_to 'Signin', new_user_session_path %></a>
