@@ -11,9 +11,15 @@
 // about supported directives.
 //
 //= require jquery3
+//= require jquery-ui
 //= require popper
 //= require bootstrap-sprockets
 //= require rails-ujs
+//= require rails-timeago-all
+//= require toastr
 //= require activestorage
-//= require turbolinks
 //= require_tree .
+
+toastr.options = {
+    "positionClass":"toast-bottom-right"
+}

@@ -1,0 +1,183 @@
+<div id="wrapper">
+    <div id="sidebar">
+        <div id="widget">
+            <script>
+                function initMap() {
+                    <% if @arrRooms.length > 0 %>
+                        var uluru = {lat:<%= @arrRooms[0].latitude %>, lng: <%= @arrRooms[0].longitude %>};
+                        var map = new google.maps.Map(document.getElementById('widget'), {
+                        zoom: 13,
+                        center: uluru
+                        });
+                    <% else %>
+                        var uluru = {lat: 48.866667, lng: 2.333333};
+                        var map = new google.maps.Map(document.getElementById('widget'), {
+                        zoom: 4,
+                        center: uluru
+                        });
+                    <% end %>
+
+                    <% @arrRooms.each do |room| %>
+                        var marker = new google.maps.Marker({
+                        position: {lat: <%= room.latitude %> , lng: <%= room.longitude %>},
+                        map: map,
+                        title: "<%= room.listing_name %>"
+                        });
+                    <% end %>
+                }
+            </script>
+            <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlBKbYL4UVc4mM55R4_O55jX2IsDnMNhc&callback=initMap">
+            </script>
+        </div>
+    </div>
+    <div id="article">
+        <div class="row">
+            <div class="col-md-12">
+                <%= search_form_for @search, url: search_path do |f| %>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <%= text_field_tag :start_date, params[:start_date], placeholder: "arrival", class: "form-control" %>
+                        </div>
+                        <div class="col-md-3">
+                            <%= text_field_tag :end_date, params[:end_date], placeholder: "departure", class: "form-control" %>
+                        </div>
+                        <div class="col-md-3">
+                            <%= f.text_field :price_gteq, placeholder: "min budget", class:"form-control" %>
+                        </div>
+                         <div class="col-md-3">
+                            <%= f.text_field :price_lteq, placeholder: "max budget", class:"form-control" %>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <%= check_box_tag "q[room_type_eq_any][]", "Entire home" %> Entire Home
+                        </div>
+                        <div class="col-md-4">
+                            <%= check_box_tag "q[room_type_eq_any][]", "Private room" %> Private room
+                        </div>
+                        <div class="col-md-4">
+                            <%= check_box_tag "q[room_type_eq_any][]", "Shared room" %> Shared room
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                         <div class="col-md-4 select">
+                            <div class="form-group">
+                                <label>Accomodates?</label>
+                                <%= f.select :accomodate_gteq, [["1 person", 1], ["2 persons", 2], ["3 persons", 3], ["4 persons", 4], ["5 persons", 5], ["6 persons", 6]], prompt:"select one...", class:"form-control" %>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 select">
+                            <div class="form-group">
+                                <label>Bedrooms?</label>
+                                <%= f.select :bed_room_gteq, [["1", 1], ["2", 2], ["3", 4], ["4", 4]], prompt:"select one...", class:"form-control" %>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 select">
+                            <div class="form-group">
+                                <label>Bathrooms?</label>
+                                <%= f.select :bathroom_gteq, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6]], prompt:"select one...", class:"form-control" %>
+                            </div>
+                        </div>                        
+                    </div>
+               
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <%= check_box_tag "q[has_wifi_eq]", true %> Wifi
+                        </div>
+                        <div class="col-md-4">
+                            <%= check_box_tag "q[has_tv_eq]", true %> Televison
+                        </div>
+                        <div class="col-md-4">
+                            <%= check_box_tag "q[has_closet_eq]", true %> Closet
+                        </div>
+                        <div class="col-md-4">
+                            <%= check_box_tag "q[has_shampoo_eq]", true %> Shampoo
+                        </div>
+                        <div class="col-md-4">
+                            <%= check_box_tag "q[has_kitchen_eq]", true %> Kitchen
+                        </div>
+                        <div class="col-md-4">
+                            <%= check_box_tag "q[has_breakfast_eq]", true %> Breakfast
+                        </div>
+                        <div class="col-md-4">
+                            <%= check_box_tag "q[has_heating_eq]", true %> Heater
+                        </div>
+                        <div class="col-md-4">
+                            <%= check_box_tag "q[has_aircon_eq]", true %> Aircon
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                        <%= f.submit "search", class:"btn btn-primary" %>
+                    </div>
+
+                <% end %>
+
+                <hr>
+
+                <div class="row">
+                    <% if @arrRooms.empty? %>
+                        Sorry no rooms correspons to your search.
+                    <% else %>
+                        <% @arrRooms.each do |room| %>
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading preview">
+                                    <%= image_tag room.photos[0].image.url(:medium) if room.photos.length > 0 %>
+                                </div>
+                                <div class="panel-body">
+                                    <%= image_tag avatar_url(room.user), class:"rounded-circle avatar-small" %>
+                                    <%= link_to room.listing_name, room %>
+                                </div>
+                            </div>
+                        </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function() {
+        $('#start_date').datepicker({
+                    dateFormat: 'dd-mm-yy',
+                    minDate: 0,
+                    maxDate: '3m',
+                    onSelect: function(selected) {
+                        var newdate = new Date($("#start_date").datepicker("getDate"));
+                        newdate.setDate(newdate.getDate() + 1);
+                        $('#end_date').datepicker("option","minDate", newdate);
+                    }
+        })
+        
+        $('#end_date').datepicker({
+                    dateFormat: 'dd-mm-yy',
+                    minDate: 0,
+                    maxDate: '3m',
+                    onSelect: function(selected) {
+                        $('#start_date').datepicker("option", "maxDate", selected);
+                    }
+        });
+    })
+</script>
+
+<script>
+    $(document).ready(function(){
+        $("#sidebar").stick_in_parent({offset_top: 20});
+    });
+</script>

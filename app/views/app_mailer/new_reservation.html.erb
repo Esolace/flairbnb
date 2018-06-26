@@ -1,0 +1,3 @@
+<p>Greetings <%= @user.fullname %>! </p>
+
+<p>Your home (<%= @room.listing_name %>) has a new reservation from <%= @reservation.start_date.strftime('%m.%d.%y') %> to <%= @reservation.end_date.strftime('%m.%d.%y') %> </p>
