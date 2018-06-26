@@ -22,7 +22,10 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = current_user.reservations.create(reservation_params)
-    redirect_to @reservation.room, notice: "Reservation accepted!"
+    if @reservation.save
+      AppMailer.new_reservation(Room.find(@reservation.room_id), @reservation).deliver_now
+      redirect_to @reservation.room, notice: "Reservation accepted!"
+    end
   end
  
   def your_trips
