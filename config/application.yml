@@ -11,3 +11,7 @@
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 
 SECRET_KEY_BASE: "1fbad86e99303e24f6fd7f627e0edcadbea6f497a10ec113f352690cc34ec365c67f49ac92e08937c5bcca66ec974085e84b46d0f9a3ab7492eb82ecddfdfb4c"
+
+GOOGLE_APP_ID: "881600839628-qo5ku6vh1953ou17id989d4op8k2g284.apps.googleusercontent.com"
+
+GOOGLE_APP_SECRET: "r8Em4JPIfOXknT_lUiwg_OtU"

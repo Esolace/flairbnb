@@ -22,6 +22,12 @@
       <div class="actions">
         <%= f.submit "Sign up", class: "btn btn-primary" %>
       </div>
+
+      <br>
+      <%= link_to "Sign up with Google",  user_google_oauth2_omniauth_authorize_path, class: "btn btn-primary-google" %>
+
+      <br><br>
+
     <% end %>
 
   </div>
