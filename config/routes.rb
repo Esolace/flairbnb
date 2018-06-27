@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   devise_for :users, :path=>'',
                     :path_names=>{:sign_in=>'login', :sign_out=>'logout', :edit=>'profile'},
                     :controllers=>{:registrations=>'registrations',
-                                    :confirmations=>'confirmations'
+                                    :confirmations=>'confirmations',
+                                    :omniauth_callbacks => "omniauth_callbacks"
                                   } 
   root 'pages#home'
   resources :users, only:[:show]
