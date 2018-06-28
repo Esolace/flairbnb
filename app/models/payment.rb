@@ -12,12 +12,10 @@ class Payment < ApplicationRecord
     end
 
     def process_payment
-        customer = Stripe::Customer.create email: email, card: token
-
-        Stripe::Charge.create customer: customer.id,
-                                        amount: Reservation.last.total*100,
-                                        description: 'Flairbnb Reservation',
-                                        currency: 'usd'
+        Stripe::Charge.create amount: self.amount*100,
+                                description: 'Flairbnb Reservation',
+                                currency: 'usd',
+                                source: self.token
     end
 
 end

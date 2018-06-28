@@ -22,9 +22,26 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = current_user.reservations.create(reservation_params)
-    if @reservation.save
-      AppMailer.new_reservation(Room.find(@reservation.room_id), @reservation).deliver_now
-      redirect_to @reservation.room, notice: "Reservation accepted!"
+    
+    if @reservation.persisted?
+      @payment = Payment.new({email: User.find(@reservation.user_id).email,
+        token: params[:payment][:token], reservation_id: @reservation_id,
+        amount: @reservation.total
+      })
+
+      begin
+        result = @payment.process_payment
+
+        if result.status == "succeeded"
+          p result
+          AppMailer.new_reservation(Room.find(@reservation.room_id), @reservation).deliver_now
+          redirect_to @reservation.room, notice: "Reservation accepted!"
+        end
+
+      rescue Exception
+        puts 'Payment failed!'
+        redirect_to @reservation.room, notice:"Your payment was rejected"
+      end
     end
   end
  
@@ -38,7 +55,7 @@ class ReservationsController < ApplicationController
 
   private 
   def reservation_params
-    params.require(:reservation).permit(:start_date, :end_date, :price, :total, :room_id)
+    params.require(:reservation).permit(:start_date, :end_date, :price, :total, :room_id, :payment)
   end
 
   def is_conflict(start_date, end_date)
