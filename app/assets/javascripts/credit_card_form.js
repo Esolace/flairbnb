@@ -1,6 +1,6 @@
 $(document).ready(function() {
  
-    var show_error, stripeResponseHandler, submitHandler; #1
+    var show_error, stripeResponseHandler, submitHandler;
 
     submitHandler = function (event) {
 
@@ -16,7 +16,7 @@ $(document).ready(function() {
 
             Stripe.card.createToken($form, stripeResponseHandler);
 
-        } else { # sinon on affiche un message 
+        } else { //sinon on affiche un message 
 
             $('#stripe').show();
 
