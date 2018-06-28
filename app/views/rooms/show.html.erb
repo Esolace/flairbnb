@@ -53,7 +53,47 @@
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>
+
+
+            <%# Description %>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>About this home</h2>
+                    <p> <%= @room.summary %> </p>
+                </div>
+            </div>
+
+            <br>
+
+            <%# Amenities %>
+            <div class="row">
+                <div class="col-md-2">
+                    <p>Amenities</p>
+                </div>
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="amenities">
+                                <li class="<%=  'text-line-through' if !@room.has_wifi %>">Wifi</li>
+                                <li class="<%=  'text-line-through' if !@room.has_tv %>">Television</li>
+                                <li class="<%=  'text-line-through' if !@room.has_closet %>">Closet</li>
+                                <li class="<%=  'text-line-through' if !@room.has_shampoo %>">Shampoo</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="amenities">
+                                <li class="<%=  'text-line-through' if !@room.has_kitchen %>">Kitchen</li>
+                                <li class="<%=  'text-line-through' if !@room.has_breakfast %>">Breakfast</li>
+                                <li class="<%=  'text-line-through' if !@room.has_heating %>">Heater</li>
+                                <li class="<%=  'text-line-through' if !@room.has_aircon %>">Aircon</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             </div>
             <div class="col-md-4">
                 <%# Reservation form %>
@@ -61,41 +101,8 @@
             </div>
         </div>
 
-        <%# Description %>
-
-        <div class="row">
-            <div class="col-md-12">
-                <h2>About this home</h2>
-                <p> <%= @room.summary %> </p>
-            </div>
-        </div>
-
-        <%# Amenities %>
-        <div class="row">
-            <div class="col-md-2">
-                <p>Amenities</p>
-            </div>
-            <div class="col-md-10">
-                <div class="row">
-                    <div class="col-md-6">
-                        <ul class="amenities">
-                            <li class="<%=  'text-line-through' if !@room.has_wifi %>">Wifi</li>
-                            <li class="<%=  'text-line-through' if !@room.has_tv %>">Television</li>
-                            <li class="<%=  'text-line-through' if !@room.has_closet %>">Closet</li>
-                            <li class="<%=  'text-line-through' if !@room.has_shampoo %>">Shampoo</li>
-                        </ul>
-                    </div>
-                      <div class="col-md-6">
-                        <ul class="amenities">
-                            <li class="<%=  'text-line-through' if !@room.has_kitchen %>">Kitchen</li>
-                            <li class="<%=  'text-line-through' if !@room.has_breakfast %>">Breakfast</li>
-                            <li class="<%=  'text-line-through' if !@room.has_heating %>">Heater</li>
-                            <li class="<%=  'text-line-through' if !@room.has_aircon %>">Aircon</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <br>
+        <hr>
 
         <%# Carousel %>
         <div class="row">
