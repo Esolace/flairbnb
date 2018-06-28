@@ -25,25 +25,23 @@ class ReservationsController < ApplicationController
     
     if @reservation.persisted?
       @payment = Payment.new({email: User.find(@reservation.user_id).email,
-        token: params[:payment]["token"], reservation_id: @reservation_id,
+        token: params[:payment][:token], reservation_id: @reservation_id,
         amount: @reservation.total
       })
 
-    begin
-      @payment.process_payment
+      begin
+        result = @payment.process_payment
 
-    if @payment.save
-      AppMailer.new_reservation(Room.find(@reservation.room_id), @reservation).deliver_now
-      redirect_to @reservation.room, notice: "Reservation accepted!"
-    end
+        if result.status == "succeeded"
+          p result
+          AppMailer.new_reservation(Room.find(@reservation.room_id), @reservation).deliver_now
+          redirect_to @reservation.room, notice: "Reservation accepted!"
+        end
 
-    rescue Exception
-      puts 'Payment failed!'
-      redirect_to @reservation.room, notice:"Your payment was rejected"
-    end
-
-    else
-      redirect_to @reservation.room, notice:"Your reservation failed"
+      rescue Exception
+        puts 'Payment failed!'
+        redirect_to @reservation.room, notice:"Your payment was rejected"
+      end
     end
   end
  
